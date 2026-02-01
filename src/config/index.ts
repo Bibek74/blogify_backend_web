@@ -4,7 +4,6 @@ dotenv.config();
 
 export const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 
-// ✅ IMPORTANT: Your .env uses MONGO_URI, not MONGODB_URI
 export const MONGODB_URI: string = process.env.MONGO_URI as string;
 
 if (!MONGODB_URI) {

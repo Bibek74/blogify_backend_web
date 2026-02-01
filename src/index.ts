@@ -1,9 +1,9 @@
 // src/index.ts
+import path from "path";
 import "dotenv/config";
-
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
-
+import adminUserRoutes from "./routes/admin.user.route";
 import authRoutes from "./routes/auth.route";
 import { connectDatabase } from "./database/mongodb";
 import { PORT } from "./config";
@@ -24,6 +24,9 @@ app.get("/", (req: Request, res: Response) => {
     message: "Welcome to the API",
   });
 });
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use("/api/admin", adminUserRoutes);
 
 async function startServer() {
   try {
